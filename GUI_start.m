@@ -1,5 +1,6 @@
 
 function GUI_start()
+
 addpath ./Function
 addpath ./Function/SCSA
 % This function is used for starting the water suppression GUI
@@ -35,7 +36,7 @@ data_value.sense_flag=0;
 details_para.fit_flag=0;
 
 % main figure creation
-mainGUI_handles.fig = figure('Visible','off','Position',[0,(Pix_SS(:,4)-120),x_max,y_max],'Color',[0.68,0.82,.68],'Name','Water Suppression 1.0','NumberTitle', 'off');
+mainGUI_handles.fig = figure('Visible','off','Position',[0,(Pix_SS(:,4)-120),x_max,y_max],'Color',[0.68,0.82,.68],'Name','SCSA toolbox','NumberTitle', 'off');
 set(mainGUI_handles.fig,'MenuBar','none'); 
 
 % menu set-up
@@ -139,13 +140,29 @@ try
     if (data_value.save_flag==0)
         if (data_value.sense_flag==0)
             info = 'Please select binary file to read';
-            [fname,pathname]=uigetfile([pwd,'\Input_data\*.mat'],info);
+            [fname,pathname]=uigetfile([pwd,'\Input_data\*.*'],info);
             file_exten_ind=strfind(fname,'.');
             file_exten=fname(file_exten_ind:end);
             if (strcmp(file_exten,'.mat'))
                 data_value.file_flag=1;
+                data_value.load_format=1;
                 data_value.temp_filename=[pathname fname];
                 data_value.spect_name=fname;
+            elseif(strcmp(file_exten,'.rda') || strcmp(file_exten,'.RDA'))
+                data_value.file_flag=1;
+                data_value.load_format=2;
+                data_value.temp_filename=[pathname fname];
+                data_value.spect_name=fname;
+            elseif(strcmp(file_exten,'.ima') || strcmp(file_exten,'.IMA'))
+                data_value.file_flag=1;
+                data_value.load_format=3;
+                data_value.temp_filename=[pathname fname];
+                data_value.spect_name=fname;
+            elseif(strcmp(file_exten,'.SDAT') || strcmp(file_exten,'.sdat') || strcmp(file_exten,'.SPAR') || strcmp(file_exten,'.spar'))
+                data_value.file_flag=1;
+                data_value.load_format=4;
+                data_value.temp_filename=[pathname fname];
+                data_value.spect_name=fname;  
             end
             try
                 data_load_suppress_init();

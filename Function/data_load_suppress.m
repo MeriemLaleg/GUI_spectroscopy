@@ -12,7 +12,16 @@ global data_value;
 global hsvd_para;
 
 try
-    load(data_value.temp_filename);
+    if (data_value.load_format==1)
+        load(data_value.temp_filename);
+    elseif(data_value.load_format==2)
+        siemens_rda_read(data_value.temp_filename);
+    elseif(data_value.load_format==3)
+        readSiememsDicom(data_value.temp_filename);
+    elseif(data_value.load_format==4)
+        [folder, baseFileName, ~] = fileparts(data_value.temp_filename);
+         read_philips_file([folder,'\',baseFileName]);
+    end 
 catch
     details_para.error=1;
     return;

@@ -124,10 +124,10 @@ fitting_handles.axis1 = axes('Units','Pixels','Units','normalized','Position',[1
 %     'String','Signal Spectrum','BackgroundColor',[0.68,0.92,1],'FontSize',9,'FontWeight','Bold');
 fitting_handles.axis2 = axes('Units','Pixels','Units','normalized','Position',[250/x_max 2/y_max 150/x_max 80/y_max]);
 
-myImage=imread([pwd,'\Function\ugent_logo.png']);
+myImage=imread([pwd,'\Function','\ugent_logo.png']);
 myImage= imresize(myImage,1);
 imshow(myImage,'Parent',fitting_handles.axis1);
-myImage=imread([pwd,'\Function\kaust_logo.jpg']);
+myImage=imread([pwd,'\Function','\kaust_logo.jpg']);
 myImage= imresize(myImage,1);
 imshow(myImage,'Parent',fitting_handles.axis2);
 
@@ -873,8 +873,8 @@ try
                 data_value.NAA_Cr(:,cur_vox)=max(abs(real(data_value.FID_FD(details_para.fit_disp_seg_NAA(1):details_para.fit_disp_seg_NAA(2),cur_vox))))./max(abs(real(data_value.FID_FD(details_para.fit_disp_seg_Cr(1):details_para.fit_disp_seg_Cr(2),cur_vox))));%max(abs(real(data_value.fit_FD_NAA(:,cur_vox))))./max(abs(real(data_value.fit_FD_Cr(:,cur_vox))));
                 data_value.fit_temp(:,cur_vox)=data_value.fit_TD(:,cur_vox);
                 data_value.Cho_Cr(:,cur_vox)=max(abs(real(data_value.FID_FD(details_para.fit_disp_seg_Cho(1):details_para.fit_disp_seg_Cho(2),cur_vox))))./max(abs(real(data_value.FID_FD(details_para.fit_disp_seg_Cr(1):details_para.fit_disp_seg_Cr(2),cur_vox))));%max(abs(real(data_value.fit_FD_Cho(:,cur_vox))))./max(abs(real(data_value.fit_FD_Cr(:,cur_vox))));
-                data_value.Myo_Cr(:,cur_vox)=data_value.peak_area_Myo(:,cur_vox)./data_value.peak_area_Cr(:,cur_vox);
-                data_value.Lac_Cr(:,cur_vox)=data_value.peak_area_Lac(:,cur_vox)./data_value.peak_area_Cr(:,cur_vox);
+                data_value.Myo_Cr(:,cur_vox)=max(abs(real(data_value.FID_FD(details_para.fit_disp_seg_mi(1):details_para.fit_disp_seg_mi(2),cur_vox))))./max(abs(real(data_value.FID_FD(details_para.fit_disp_seg_Cr(1):details_para.fit_disp_seg_Cr(2),cur_vox))));%data_value.peak_area_Myo(:,cur_vox)./data_value.peak_area_Cr(:,cur_vox);
+                data_value.Lac_Cr(:,cur_vox)=max(abs(real(data_value.FID_FD(details_para.fit_disp_seg_Lac(1):details_para.fit_disp_seg_Lac(2),cur_vox))))./max(abs(real(data_value.FID_FD(details_para.fit_disp_seg_Cr(1):details_para.fit_disp_seg_Cr(2),cur_vox))));%data_value.peak_area_Lac(:,cur_vox)./data_value.peak_area_Cr(:,cur_vox);
                 data_value.fit_TD(:,cur_vox)=1*data_value.fit_TD(:,cur_vox) + 1*baseline_t(:,count);%baseline_t(:,count-1);%data_value.fit_TD(:,i) + ifft(ifftshift(data_value.FID_FD_base(:,i)));
                 data_value.fit_FD(:,cur_vox)=fftshift(fft(data_value.fit_TD(:,cur_vox)));
                 data_value.fit_baseline(:,cur_vox)= data_value.fit_FD(:,cur_vox)-fftshift(fft(data_value.fit_temp(:,cur_vox)));

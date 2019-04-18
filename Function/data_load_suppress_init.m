@@ -14,7 +14,30 @@ global hsvd_para;
 details_para.error=0;
 % .mat file loaded
 try
-    load(data_value.temp_filename);
+    if (data_value.load_format==1)
+        load(data_value.temp_filename);
+    elseif(data_value.load_format==2)
+        [complex_fid_unsuppressed,rd]=siemens_rda_read(data_value.temp_filename);
+        for i=1:size(complex_fid_unsuppressed,2)
+            complex_fid_unsuppressed(:,i)=flipud(complex_fid_unsuppressed(:,i));
+        end
+        Fs=1e6./rd.DwellTime;
+        Tf=rd.MRFrequency.*1e6;
+    elseif(data_value.load_format==3)
+        [complex_fid_unsuppressed,rd] = readSiememsDicom(data_value.temp_filename);
+        complex_fid_unsuppressed=conj(complex_fid_unsuppressed)';
+        for i=1:size(complex_fid_unsuppressed,2)
+            complex_fid_unsuppressed(:,i)=flipud(complex_fid_unsuppressed(:,i));
+        end
+        Fs=1./rd.f.DW./2;
+        Tf=rd.f.SF;
+    elseif(data_value.load_format==4)
+        [folder, baseFileName, ~] = fileparts(data_value.temp_filename);
+        [complex_fid_unsuppressed,step,MRfrequency]= read_philips_file([folder,'\',baseFileName]);
+        complex_fid_unsuppressed=conj(complex_fid_unsuppressed)';
+        Fs=1./step;
+        Tf=MRfrequency;
+    end
 catch
     details_para.error=1;
     return;
@@ -28,7 +51,7 @@ details_para.fres= (-(details_para.Fs)/2 + ((details_para.Fs)/(size(data_value.F
 details_para.t= (1:size(data_value.FID_FD,1))./details_para.Fs;
 details_para.PE= 3;
 details_para.RE=1;
-details_para.Tf = 127776603;
+details_para.Tf = Tf;
 details_para.ref = 4.7;
 data_value.file_name{1}=[data_value.spect_name];
 data_value.file_name{2}=[data_value.spect_name];
