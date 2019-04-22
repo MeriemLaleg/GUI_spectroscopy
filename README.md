@@ -15,6 +15,7 @@ In order to run the tool, you need to have Matlab installed. Second, use GUI_sta
 
 ### Citation
 ***This reported method is protected by a patent***. 
-If you use thi tool for your research, or incorporate if  in your academic use, please cite:
+
+If you use this tool for your research, or incorporate if  in your academic use, please cite:
 
 S. Bhaduri, A. Chahid , E. Achten,   H. Serrai,    T.M. Laleg-Kirati1, “SCSA based MATLAB toolbox for 1H MR spectroscopic water suppression and denoising ”. PLOSEONE, 2019.
