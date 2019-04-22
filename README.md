@@ -14,6 +14,7 @@ Any MRS datset in Siemens and philips format
 In order to run the tool, you need to have Matlab installed. Second, use GUI_start.m file to start the tool
 
 ### Citation
-***This reported method is protected by a patent***. If you use thi tool for your research, or incorporate if  in your academic use, please cite:
+***This reported method is protected by a patent***. 
+If you use thi tool for your research, or incorporate if  in your academic use, please cite:
 
-S. Bhaduri, A. Chahid , E. Achten,   H. Serrai,    T.M. Laleg-Kirati1, “SCSA based MATLAB toolbox for 1H MR spectroscopic water suppression and denoising ”. PLOSEONE.2019.
+S. Bhaduri, A. Chahid , E. Achten,   H. Serrai,    T.M. Laleg-Kirati1, “SCSA based MATLAB toolbox for 1H MR spectroscopic water suppression and denoising ”. PLOSEONE, 2019.
