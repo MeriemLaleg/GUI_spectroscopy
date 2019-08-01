@@ -87,8 +87,8 @@ mainGUI_handles.slice_fit = uicontrol(mainGUI_handles.slice_selection_panel,'Sty
 
 mainGUI_handles.close = uicontrol(mainGUI_handles.fig,'Style', 'pushbutton','Units','normalized','Position',[670/x_max 5/y_max 45/x_max 25/y_max],...
 'String', 'Close','FontSize',9,'FontWeight','Bold', 'Interruptible','off','BusyAction','cancel','Callback',@close_Callback);
-mainGUI_handles.Help = uicontrol(mainGUI_handles.fig,'Style', 'pushbutton','Units','normalized','Position',[550/x_max 5/y_max 45/x_max 25/y_max],...
-'String', 'Help','FontSize',9,'FontWeight','Bold', 'Interruptible','off','BusyAction','cancel','Callback',@help_Callback);
+% mainGUI_handles.Help = uicontrol(mainGUI_handles.fig,'Style', 'pushbutton','Units','normalized','Position',[550/x_max 5/y_max 45/x_max 25/y_max],...
+% 'String', 'Help','FontSize',9,'FontWeight','Bold', 'Interruptible','off','BusyAction','cancel','Callback',@help_Callback);
 mainGUI_handles.save = uicontrol(mainGUI_handles.fig,'Style', 'pushbutton','Units','normalized','Position',[610/x_max 5/y_max 45/x_max 25/y_max],...
 'String', 'Save','FontSize',9,'FontWeight','Bold', 'Interruptible','off','BusyAction','cancel','Callback',@save_Callback);
 
@@ -283,16 +283,16 @@ end
 
 
 
-function help_Callback(hObject, eventdata)
-%Callback for 'close' button
-
-file=strcat(pwd,'\README.docx');
-
-try
-    open(file);
-catch 
-    return;
-end
+% function help_Callback(hObject, eventdata)
+% %Callback for 'close' button
+% 
+% file=strcat(pwd,'\README.docx');
+% 
+% try
+%     open(file);
+% catch 
+%     return;
+% end
 
 function save_Callback(hObject, eventdata)
 %Callback for 'close' button
